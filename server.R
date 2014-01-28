@@ -1,13 +1,6 @@
 shinyServer(function(input, output, session) {
   
-  # Analysis ----
-  output$ui_analysis <- renderUI({
-      if (input$subGroups == "Startseite") {
-        return()
-      } else {
-        div(class=" ", get(paste0('ui_',input$tool))())
-      }
-  })
+  source("module/histogram.R")
   
   # main page ----
   output$mainPage <- renderUI({
@@ -17,14 +10,8 @@ shinyServer(function(input, output, session) {
       div(class="",
           fluidPage(fluid=F, fluidRow(column(12, offset=3,
                                       column(4, br(), loginInfo())), responsive=F),
-        navbarPage(title="",
-                   tabPanel("Startseite", br(), fluidRow(column(12, wellPanel(includeMarkdown("www/startseite.md")))), id="Startseite"),
-                   tabPanel("Subgruppen-Analyse", br(), div(class=" ", ui_subGroups()), id="subGroup"),
-                   tabPanel("Ähnliche Fälle", br(), div(class=" ", ui_simCases()), id="simcases"),
-                   fluid=F,
-                   responsive=F,
-                   theme="css/bootstrap.css"
-                   )
+        navbarPage(title="Login Showcase",
+                   tabPanel("Histogram", br(), div(class=" ", ui_histogram()), id="subGroup"))
           ))
     } else {
       fluidPage(fluidRow(column(1, offset=5, br(), br(), br(), br(), h5("Login"), loginUI())),
