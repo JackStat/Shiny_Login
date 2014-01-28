@@ -1,6 +1,15 @@
+library(shiny)
+library(shinysky)
+library(shinyExt)
+library(digest)
+
 shinyServer(function(input, output, session) {
   
-  source("module/histogram.R")
+  # Tools ----
+  source("tools//login.R", local=T)
+  
+  # Modules ----
+  source("module//histogram.R", local=T)
   
   # main page ----
   output$mainPage <- renderUI({
@@ -8,8 +17,7 @@ shinyServer(function(input, output, session) {
     if (loginData$LoggedIn) {
       doLogout()
       div(class="",
-          fluidPage(fluid=F, fluidRow(column(12, offset=3,
-                                      column(4, br(), loginInfo())), responsive=F),
+          fluidPage(fluidRow(column(12, column(4, br(), loginInfo()))),
         navbarPage(title="Login Showcase",
                    tabPanel("Histogram", br(), div(class=" ", ui_histogram()), id="subGroup"))
           ))
