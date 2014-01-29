@@ -57,11 +57,10 @@ doLogin <- reactive({
 # do logout ----
 doLogout <- reactive({
   if (!is.null(input$logout)) {
-    if (input$logout == 0) {
-      return(NULL)
+    if (input$logout > 0) {
+      isolate(
+        loginData$LoggedIn <<- FALSE
+      )
     }
-    isolate(
-      loginData$LoggedIn <<- FALSE
-    )
   }
 })
