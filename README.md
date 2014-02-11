@@ -8,3 +8,5 @@ The work is based on my own ideas for securing shiny server apps, the blog post 
 It is recommended to use a https-connection for your app. A good and easy tutorial for shiny server and nginx with ssl can be found [here](http://stackoverflow.com/questions/19934190/shiny-server-on-nginx-with-ssl).
 
 The example can be found [here](https://185.21.100.236:3636/ODM/): Username: demo Password: demo
+
+Licence: MIT
